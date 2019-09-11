@@ -1,0 +1,60 @@
+﻿Author of the code review: Renfei Wang
+Date of the code review: 04/03/2019
+Sprint number: Sprint 5
+Name of the .cs file bing reviewed: ScrollingCamera.cs
+Author of the .cs file being reviewed: Yu Jiang
+Specific comments on what is readable and what is not:
+ public static Matrix CameraMoving()
+        {
+            //private GraphicsDevice graphics ;
+            //World world = new World(208, 16);
+            Matrix Camera;
+            float marioWidth = TreeNewBee.SuperMarioBros.Instance.GraphicsDevice.Viewport.Width;
+            float marioHeight = TreeNewBee.SuperMarioBros.Instance.GraphicsDevice.Viewport.Height;
+            float worldWidth = World.Instance.Width;
+            float pX = World.Instance.Mario.MarioPhysics.Position.X;
+            float x;
+            float y;
+            float z;
+            float a;
+            float b;
+            float c;
+            
+            int objectWidth = 16;
+            if (pX <= marioWidth/2)
+            {
+                x = -marioWidth/2;
+                y =  marioHeight/ 2 - 256;
+                z = 0;
+                a = marioWidth * 0.5f;
+                b = marioHeight * 0.5f;
+                c = 0;
+            }
+            else if (pX >= worldWidth * objectWidth - marioWidth/2)
+            {
+                x = -worldWidth * objectWidth + marioWidth / 2;
+                y = marioHeight / 2 - 256;
+                z = 0;
+                a = marioWidth * 0.5f;
+                b = marioHeight * 0.5f;
+                c = 0;
+            }
+            else
+            {
+                x = -pX;
+                y = marioHeight / 2 - 256;
+                z = 0;
+                a = marioWidth * 0.5f;
+                b = marioHeight * 0.5f;
+                c = 0; 
+            }
+            //Matrix Camera = Matrix.CreateTranslation(x, y, z);
+            Camera = Matrix.CreateTranslation(new Vector3(x, y, z)) * Matrix.CreateTranslation(new Vector3(a, b, c));
+            return Camera;
+        }
+
+		the variables in cameraMoving method are not quite readable. For example,
+		marioWidth and marioHeight is not the width and height of the mario sprite but
+		the width and height of the display window. pX is also confused. marioPhysicX may 
+		be a better choice. The most confused part are the variable x, y, z ,a ,b,c, which I think
+		definitely can be named better.

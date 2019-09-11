@@ -1,0 +1,10 @@
+﻿Author of the code review: Yu Jiang
+Date of the review: 04/21/2019
+Sprint number: 6
+Name of the file being reviewed: SwimFishPhysics.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang
+Commands on code quality:
+	Overall, you produce high quality code. I am just going to point out one place that causes a little difficulty to read. That is in your
+CheckBoundary method, you use a really long sentence to make the if condition. I would say a lot of people would be confused by that. I would recomment that 
+you put the condition into one variable and check that variable instead. Also don't forget to fully express what the variable is for.

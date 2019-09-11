@@ -1,0 +1,20 @@
+﻿Author: Yu Jiang
+Date: Feb-11-2019
+Sprint Number: 2
+File Being Reviewed: ResetCommand.cs
+Author of the file: Guannan Zhou
+Comment: 
+	Overall the reset command works perfectly. There is one thing that I think you can consider changing. 
+I see the file has only two function, which is the constructor and the Execute() function. Your way of 
+initializing new Mario, new items, and new block as well as registering all the commands inside the 
+Execute() function will work without a doubt. But if there’s anything you want to change about the 
+command, you have to go back to this function to check line by line to change the things that you 
+want to change. I think it’s the high coupling that we have discussed in class. Also, it’s not easy 
+to maintain if there’re more things to add in later implementation. 
+	One possible solution I can think of is, you can write three new functions that each construct a particular 
+thing, like Mario, items, blocks, etc. Also, you can implement a new function like what you did in the 
+main game file, -- using an addCommand() function to register the keys with the commands. 
+	The advantage is obvious. You can easily find out which function is not working correctly with this 
+implementation. Also, it’s low coupling, which means if anything is not working correctly, there’s 
+a chance that the game won’t collapse. Also, it’s easy to maintain because you can easily change any
+of the functions without intervening other functions. 

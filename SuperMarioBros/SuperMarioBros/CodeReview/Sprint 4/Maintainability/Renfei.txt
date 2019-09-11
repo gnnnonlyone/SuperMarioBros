@@ -1,0 +1,96 @@
+﻿Author of the code review: Renfei Wang
+Date of the code review: 03/25/2019
+Sprint number: Sprint 4
+Name of the .cs file being reviewed: MarioPhysics.cs
+
+namespace SuperMarioBros.PhysicalState
+{
+    public class MarioPhysics : IPhysics
+    {
+        public Vector2 Position { get; set; }
+        public Vector2 Velocity { get; set; }
+        public Vector2 Acceleration { get; set; }
+        public bool isLanding { get; set; }
+        public bool iAmRunning { get; set; }
+        public bool Dead { get; set; }
+        public MarioPhysics(Vector2 position)
+        {
+            Position = position;
+            Velocity = new Vector2();
+            Acceleration = new Vector2();
+            isLanding = true;
+            iAmRunning = false;
+            Dead = false;
+        }
+        public void RunningSet()
+        {
+            iAmRunning = true;
+        }
+        public void Jump()
+        {
+            if (isLanding)
+            {
+                Velocity = new Vector2(Velocity.X, -210);
+                isLanding = false;
+                iAmRunning = false;
+            }
+        }
+
+        public void MoveRight()
+        {
+            if (isLanding)
+            {
+                if (!iAmRunning)
+                {
+                    Velocity = new Vector2(100, Velocity.Y);
+                    Acceleration = new Vector2(0, Velocity.Y);
+                }
+                else
+                {
+                    Velocity = new Vector2(100, Velocity.Y);
+                    Acceleration = new Vector2(50, Velocity.Y);
+                }
+
+                
+            }
+            else
+            {
+                Velocity = new Vector2(35, Velocity.Y);
+            }
+            
+        }
+
+        public void MoveLeft()
+        {
+            if (isLanding)
+            {
+                Velocity = new Vector2(-100, Velocity.Y);
+            }
+            else
+            {
+                Velocity = new Vector2(-35, Velocity.Y);
+            }
+            
+        }
+        
+        public void Update(GameTime gameTime)
+        {
+            float time = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (Velocity.X < 400)
+            {
+                //Velocity += new Vector2(Acceleration.X, 300)*time;
+                Velocity += new Vector2(Acceleration.X*time, 300*time);
+            }
+            else
+            {
+                Velocity = new Vector2(400, Velocity.Y);
+                Velocity += new Vector2(0, 300 * time);
+            }
+            //Velocity += new Vector2(Acceleration.X, 300) * time;
+            Position += Velocity * time;
+        }
+    }
+}
+Author of the .cs file being reviewed:
+Specific comments on code quality: There's still a lot of magic number floating around, which is not a good sign of the code quality.
+A hypothetical change: We could create a new file to store all of the magic numbers and refer to it everytime we want to use it.

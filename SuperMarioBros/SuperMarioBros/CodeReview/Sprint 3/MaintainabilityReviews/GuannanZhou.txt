@@ -1,0 +1,44 @@
+﻿Author of the code review: Guannan Zhou
+Date of the code review: 02/25/2019
+Sprint number: 3
+Name of the file being reviewed: Mario.cs
+Timae of the code review: 20 mins
+Author of the file being reviewed: Guannan Zhou, Renfei Wang
+Comments on code quality: 
+
+        public void TakeDamage()
+        {
+            if (MarioPowerUpState is MarioSmallState)
+            {
+                MarioAnimatedState = new MarioDeadState();
+            }
+            else
+            {
+                MarioPowerUpState = new MarioSmallState();
+            }
+        }
+
+Comments: The MarioPowerUpState may cause confution here. Considered change it 
+to bool properties in the future sprints.
+
+        public IMarioAnimatedState MarioAnimatedState { get; set; }
+        public IMarioPowerUpState MarioPowerUpState { get; set; }
+        public Vector2 Location { get; set; }
+
+        private readonly double delay = 0.1d;
+        private double time;
+        private bool action;
+
+Comments: To the meantainability consideration, we should consider put these readonly 
+variables in a seperate file in the future design.
+
+        public void Down()
+        {
+            if (action)
+            {
+                MarioAnimatedState.Down();
+            }
+        }
+
+Comments: Should consider move this Down, Left, Right, Up operations into Command classes.
+As the Mario class, it shouldn't show all posible operations.

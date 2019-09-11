@@ -1,0 +1,11 @@
+﻿Author of the code review: Yu Jiang
+Date of the review: 03/25/2019
+Sprint number: 4
+Name of the file being reviewed: MarioPhysics.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Tian Zeng
+Commands on code quality:
+	I would say overall the code looks really good. One thing to point out is the code uses a lot of constance variable. In other word,
+	It's not good for maintaining the codes. I would say just take out the constance variables. And put a regular variable there I would say. 
+	Then every time initialise them in the method and also change their values in other file through calling them. It might take some time but
+	it's easier to maintain.

@@ -1,0 +1,73 @@
+﻿Review author: Tian Zeng
+Date: 03/08/2019
+Sprint 4
+
+File: ItemPhysics.cs
+Authored by: Guannan Zhou
+Time taken for review: 10 minutes
+
+Code:
+
+    public class ItemPhysics : IPhysics
+    {
+        public Vector2 Position { get; set; }
+        public Vector2 Velocity { get; set; }
+        public Vector2 Acceleration { get; set; }
+
+        public Vector2 StartingPosition { get; set; }
+
+        public bool isStatic { get; set; }
+
+        public ItemPhysics(Vector2 position)
+        {
+            Position = position;
+            Velocity = new Vector2();
+            Acceleration = new Vector2();
+            StartingPosition = position;
+            isStatic = true;
+        }
+
+        public void FlowerUP()
+        {
+            Velocity = new Vector2(Velocity.X, -200f);
+            Acceleration = new Vector2(0, 80f);
+        }
+
+        public void CoinUp()
+        {
+            Velocity = new Vector2(0, -200f);
+            Acceleration = new Vector2(0, 80f);
+            if(Position == StartingPosition )
+            {
+                
+            }
+        }
+
+        public void FlowerWalk()
+        {
+            Velocity = new Vector2(50, 0);
+        }        
+
+        public void ChangeDirection()
+        {
+            Velocity = new Vector2(-1 * Velocity.X, Velocity.Y);
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            if (!isStatic)
+            {
+                float realTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Velocity += realTime * Acceleration;
+                Position += realTime * Velocity;
+            }
+        }
+    }
+
+
+Comments:
+Obviously, this class mainly deals with the physical properties of items: speed, position, etc. But in the code, there are too many 
+constants that exist in the physical formulas used for the calculations, making the readability of the code poor. If it is not the 
+developer of this class, it is difficult to understand the meaning of these constants. Therefore, I recommend defining these constants 
+as literal constants in a specialized class, such as storing a value of 50 in a variable called FlowerUpSpeed.
+

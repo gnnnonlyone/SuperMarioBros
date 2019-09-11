@@ -1,0 +1,42 @@
+﻿Author of the code review: Guannan Zhou
+Date of the review: 03/25/2019
+Sprint number: 4
+Name of the file being reviewed: KeyboardController.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang, Guannan Zhou
+Commands on code quality
+
+ private SuperMarioBros game;
+        public KeyboardController(SuperMarioBros game)
+        {
+            this.game = game;
+            keyboardControllerMap = new Dictionary<Keys, ICommand>();
+        }
+
+Comments: Ideally, the controller shouldn't know the exsistence of the
+game.
+
+ public void Update()
+        {
+            KeyboardState keyboardState = Keyboard.GetState();
+            foreach (KeyValuePair<Keys, ICommand> keyboardControllerMapPair in keyboardControllerMap)
+            {
+                if (keyboardState.IsKeyDown(keyboardControllerMapPair.Key))
+                {
+                    keyboardControllerMapPair.Value.Execute();
+                }
+                if (keyboardState.IsKeyUp(Keys.Left) && keyboardState.IsKeyUp(Keys.A) && keyboardState.IsKeyUp(Keys.Right) && keyboardState.IsKeyUp(Keys.D))
+                {
+                    foreach (KeyValuePair<Keys, ICommand> keyboarMapPair in keyboardControllerMap)
+                    {
+                        if(keyboarMapPair.Key==Keys.M)
+                        {
+                            keyboarMapPair.Value.Execute();
+                        }
+                    }
+                }
+            }
+        }
+
+Comments: Update method shouldn't have such a complicated statement, which will reduce the effectiveness of 
+the code. Also, some hard code included in the if statement. 

@@ -1,0 +1,12 @@
+﻿This time we didn't use much of the azure tasks so the burn down chart is not very useful.
+	The group spent the decent amount of time on Sprint 6. The thing we still
+	need to work on is cooperation, communication and time management. Although we 
+	spend a lot of time on Sprint 6, there are still some place that we don't satisfy about 
+	it but we lack of time. The team reflected and talked about a possible solution is start
+	to divide and assign the different parts of the project earlier so we can start earlier.
+	What's more, cooperation and communication is also important. If we didn't figure out a 
+	solution for our own aasignment for 1 days, we should ask others in the team for help and 
+	we can work it together. If someone in the group ask for help, we should help him after we
+	finished our own part. We should save at least one day before due for overall checking and
+	revising.
+	

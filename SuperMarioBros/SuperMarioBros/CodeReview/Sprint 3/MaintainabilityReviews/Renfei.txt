@@ -1,0 +1,12 @@
+﻿Author of the code review: Renfei Wang
+Date of the code review: 02/25/2019
+Sprint Number: Sprint 3
+Name of the .cs file being reviewed: MarioBlockCollisionHandler.cs
+Author of the .cs file being reviewed: Guannan Zhou
+Specific comments on code quality: 
+In the method HandleCollision, there is a huge if-elseif block to differentiate
+different kind of blocks and call different collision method. To me, this class 
+is doing too many things.
+A hypothetical change: 
+I am thinking if we can spilit this class into separate small classes to handle 
+different kinds of block collision with mario.

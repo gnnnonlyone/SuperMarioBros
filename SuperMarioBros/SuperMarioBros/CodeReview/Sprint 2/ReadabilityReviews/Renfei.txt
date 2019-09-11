@@ -1,0 +1,23 @@
+﻿Review author: Renfei Wang
+Date of the code review: 02/06/2019
+Name of the .cs file being reviewed: MarioIdleRightState.cs
+Author of the .cs file being reviewed: Guannan Zhou
+Number of minutes taken to complete the review: 20 min
+Specfic comments:
+The each movement method in the file is readable since it is given meaningful name.
+The enum of the IMarioAppearanceState is readable too. However, it's a little hard
+to understand the instance mario since it's interface named IPlayer and it seems like
+they have no relation with each other. What's more, it's hard to differentiate the
+two instance name "mario" and "sprite".
+
+For Mario State, each state is relative specific since it specify each of the move
+the mario will make. Each method is short for each move the mario will make since there's
+only 0 or 1 line of code for each method. However, I find that the MarioIdleRightState
+is attempting to take on more than one responsibilities by trying to embody two Mario
+type - big mario and fire mario.
+
+For future implementation, big mario and fire mario may have different movement
+poossibilities. We may add more state for big mario but it may not make sense
+for fire mario, such as LeftBigStarIdleMarioState. There may not be
+LeftFireStarIdleMarioState. In that case, if putting the big mario and fire mario
+in the same class, we're allowing creating a mario state that makes no sense.

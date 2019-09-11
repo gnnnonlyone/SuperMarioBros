@@ -1,0 +1,97 @@
+﻿Review author: Tian Zeng
+Date: 02/25/2019
+Sprint 3
+
+File: LevelLoader.cs
+Authored by: Guannan Zhou
+Time taken for review: 10 minutes
+
+		private static void CreateBlock(IWorld world, string type, float xPosition, float yPosition)
+        {
+            switch (type)
+            {
+                case "BeveledBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new BeveledBlock(new Vector2(xPosition, yPosition));
+                    break;
+                case "BrickBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new BrickBlock(new Vector2(xPosition, yPosition));
+                    break;
+                case "GroundBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new GroundBlock(new Vector2(xPosition, yPosition));
+                    break;
+                case "HiddenBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new HiddenBlock(new Vector2(xPosition, yPosition));
+                    break;
+                case "Pipe":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new Pipe(new Vector2(xPosition, yPosition));
+                    break;
+                case "QuestionBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new QuestionBlock(new Vector2(xPosition, yPosition));
+                    break;
+                case "UsedBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new UsedBlock(new Vector2(xPosition, yPosition));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+		private static void CreateObjects(IWorld world, string obj, string type, float xPosition, float yPosition)
+        {
+            switch (obj)
+            {
+                case "Block":
+                    CreateBlock(world, type, xPosition, yPosition);
+                    break;
+                case "Player":
+                    CreatePlayer(world, type, xPosition, yPosition);
+                    break;
+                case "Item":
+                    CreateItem(world, type, xPosition, yPosition);
+                    break;
+                case "Enemy":
+                    CreateEnemy(world, type, xPosition, yPosition);
+                    break;
+                case "Scenery":
+                    CreateScenery(world, type, xPosition, yPosition);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+		private static void CreateScenery(IWorld world, string type, float xPosition, float yPosition)
+        {
+            switch(type)
+            {
+                case "BigBush":
+                    world.SceneryList.Add(new HugeBush(new Vector2(xPosition, yPosition)));
+                    break;
+                case "SmallBush":
+                    world.SceneryList.Add(new SmallBush(new Vector2(xPosition, yPosition)));
+                    break;
+                case "BigCloud":
+                    world.SceneryList.Add(new HugeCloud(new Vector2(xPosition, yPosition)));
+                    break;
+                case "SmallCloud":
+                    world.SceneryList.Add(new SmallCloud(new Vector2(xPosition, yPosition)));
+                    break;
+                case "BigHill":
+                    world.SceneryList.Add(new HugeHill(new Vector2(xPosition, yPosition)));
+                    break;
+                case "SmallHill":
+                    world.SceneryList.Add(new SmallHill(new Vector2(xPosition, yPosition)));
+                    break;
+                default:
+                    break;
+            }
+
+        }   
+
+
+Comment:
+I am concerned about the maintainability of these three features. When we load a different world, a new block/item type may appear, and we may need to add more switch statements.
+If possible, it's a good idea to create a launch method for the block/project/scene that takes a string and starts an object based on the string passed to it.
+These methods are part of the block / item / effects class, for example can be called as follows:
+world.Items.Add(Item(String itemType,(new Vector2(xPosition,yPosition))));
+This will eliminate the need for switch statements and make code maintenance easier.

@@ -1,0 +1,10 @@
+﻿Author of the code review: Renfei Wang
+Date of the review: 04/21/2019
+Sprint number: 6
+Name of the file being reviewed: EnemyPhysics.cs
+Author of the file being reviewed: Everyone
+Comment on code quality:
+There is a bool called steer in that class and I don't understand.
+I asked my teammates and no one knows how to explain this bool. However,
+the code cannot work without this bool. I feels like it should be named more
+meaningful so that we can understand as long as we see it.

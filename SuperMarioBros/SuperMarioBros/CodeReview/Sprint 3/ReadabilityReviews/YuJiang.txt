@@ -1,0 +1,7 @@
+﻿Author of the code review: Yu Jiang
+Date of the code review: 02/20/2019
+Sprint number: 3
+Name of the .cs file being reviewed: CollisionDetection.cs
+Author of the .cs file being reviewed: Renfei Wang
+Specific comments on code quality: Overall the code is of great quality. The method is to detect if the items or sprites have
+collided with the other objects and call the relevant collision handler to deal with the collision. I see that the following lines are committed to calling different function and inside each of the function. I suggest that you could develop the collision function inside each object and just use the collision detection to detect and call the collision handler instead of putting everything inside the collision function, which will lower the cohesion and increase coupling.

@@ -1,0 +1,60 @@
+﻿Actually, "Jump" and "Up" are describing the same state of Mario. Should consider use one of these two words in the future
+design.
+
+
+
+File: IPlayer.cs
+Authors: Renfei Wang 
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Game1
+{
+    public enum IMarioAppearanceState { Big, Small, Fire };
+    public interface IPlayer
+    {
+        IMarioAppearanceState MarioAppearanceState { get; set; }
+        IMarioAnimatedState MarioAnimatedState { get; set; }
+        void Idle();
+        void Up();
+        void Down();
+        void Left();
+        void Right();
+        void Update();
+        void Big();
+        void Small();
+        void Fire();
+        void Draw(SpriteBatch spriteBatch);
+        void Dead();
+    }
+}
+Comments: I felt like "MarioAppearanceState" and "MarioAnimatedState" may cause confusion. It takes me some time to understand
+the difference between them. Although these two variables looks pretty similar, their appearance may varies. "MarioAppearanceState"
+is an enum variable while "MarioAnimatedState" is a state variable which is associated with state class.
+
+File BlockFactory.cs
+Author Tian Zeng
+
+        public ISprite CreateBeveledBlock(Vector2 position)
+        {
+            return new StaticSprite(beveledBlockSheet, new Rectangle(0, 0, beveledBlockSheet.Width, beveledBlockSheet.Height), position);
+        }
+
+        public ISprite CreateBrickBlock(Vector2 position)
+        {
+            return new StaticSprite(brickBlockSheet, new Rectangle(0, 0, brickBlockSheet.Width, brickBlockSheet.Height), position);
+        }
+
+        public ISprite CreateBrickBlock(Vector2 position)
+        {
+            return new StaticSprite(brokenBlockSheet, new Rectangle(0, 0, brokenBlockSheet.Width, brokenBlockSheet.Height), position);
+        }
+
+Comments: These three "StaticSprite" may cause confusion, since these three blocks are not the same object. May consider add "BeveledBlockSprite"
+"BrickBlockSprite" and "BrickBlockSprite" in the future.

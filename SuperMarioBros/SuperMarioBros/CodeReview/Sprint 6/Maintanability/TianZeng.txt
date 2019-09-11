@@ -1,0 +1,13 @@
+﻿Author of the code review: Tian Zeng
+Date of the review: 04/21/2019
+Sprint number: 6
+Name of the file being reviewed: SwimJellyFishPhysics.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang
+
+Commands on code quality:
+Overall, the code is very clear, cohesion is high and the coupling is low. But I think the realization 
+of gravity still needs to be improved. Because the gravity of jellyfish should be the same as ordinary 
+gravity, the underwater world is slower because of buoyancy. Therefore, the most perfect situation should 
+be the introduction of buoyancy. This may have a small impact on maintainability, but it does not cause 
+any major problems. In short, the code is very maintainable.

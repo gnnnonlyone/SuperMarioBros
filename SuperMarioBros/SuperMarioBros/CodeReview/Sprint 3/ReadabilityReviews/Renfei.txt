@@ -1,0 +1,14 @@
+﻿Author of the code review: Renfei Wang
+Date of the code review: 2/20/2019
+Sprint number: Sprint 3
+Name of the .cs file being reviewed: World.cs
+Author of the .cs file being reviewed: Guannan Zhou
+Number of minutes taken to complete the review: 15 min
+specific comments on what is readable and what is not:
+The first thing I noticed is the Block 2D array. I'm not sure what is 
+the purpose of making a 2D array of the Blocks, but I think at least for
+Sprint 3, it is sufficient to store blocks in a 1D array. The 2d array makes
+the code hard to read at many places, such as multiple nested for loops and
+the way we get and set the value of a block.
+For future refactoring, I'm thinking to change the 2D array Block to a list of 
+array of block, so it will easy to write, maintain and read the code.

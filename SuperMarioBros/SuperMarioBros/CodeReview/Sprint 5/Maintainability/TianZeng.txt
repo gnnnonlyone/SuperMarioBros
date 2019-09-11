@@ -1,0 +1,60 @@
+﻿Author of the code review: Tian Zeng
+Date of the review: 04/08/2019
+Sprint number: 5
+Name of the file being reviewed: ScrollingCamera.cs
+Time of the code review: 15 min
+Author of the file being reviewed: Yu Jiang, Tian Zeng
+public static Matrix CameraMoving()
+        {
+            //private GraphicsDevice graphics ;
+            //World world = new World(208, 16);
+            Matrix Camera;
+            float marioWidth = TreeNewBee.SuperMarioBros.Instance.GraphicsDevice.Viewport.Width;
+            float marioHeight = TreeNewBee.SuperMarioBros.Instance.GraphicsDevice.Viewport.Height;
+            float worldWidth = World.Instance.Width;
+            float pX = World.Instance.Mario.MarioPhysics.Position.X;
+            float x;
+            float y;
+            float z;
+            float a;
+            float b;
+            float c;
+            
+            int objectWidth = Constant.Constant.Instance.ObjectWidth;
+            if (pX <= marioWidth/2)
+            {
+                x = -marioWidth/2;
+                y =  marioHeight/ 2 - Constant.Constant.Instance.BoundaryY;
+                z = Constant.Constant.Instance.CameraCoordinateInitial;
+                a = marioWidth * 0.5f;
+                b = marioHeight * 0.5f;
+                c = Constant.Constant.Instance.CameraCoordinateInitial;
+            }
+            else if (pX >= worldWidth * objectWidth - marioWidth/2)
+            {
+                x = -worldWidth * objectWidth + marioWidth / 2;
+                y = marioHeight / 2 - Constant.Constant.Instance.BoundaryY;
+                z = Constant.Constant.Instance.CameraCoordinateInitial;
+                a = marioWidth * 0.5f;
+                b = marioHeight * 0.5f;
+                c = Constant.Constant.Instance.CameraCoordinateInitial;
+            }
+            else
+            {
+                x = -pX;
+                y = marioHeight / 2 - Constant.Constant.Instance.BoundaryY;
+                z = Constant.Constant.Instance.CameraCoordinateInitial;
+                a = marioWidth * 0.5f;
+                b = marioHeight * 0.5f;
+                c = Constant.Constant.Instance.CameraCoordinateInitial; 
+            }
+            //Matrix Camera = Matrix.CreateTranslation(x, y, z);
+            Camera = Matrix.CreateTranslation(new Vector3(x, y, z)) * Matrix.CreateTranslation(new Vector3(a, b, c));
+            return Camera;
+        }
+
+Comments:
+This class works fine, but I still have some concerns about the quality of the code. This concern focuses 
+on the naming of variables. There are many variable names in it that are not so reasonable, which may cause 
+unnecessary trouble in future maintenance. I suggest changing the name of the 'xyz' and other variables to a 
+more reasonable name for future maintenance.

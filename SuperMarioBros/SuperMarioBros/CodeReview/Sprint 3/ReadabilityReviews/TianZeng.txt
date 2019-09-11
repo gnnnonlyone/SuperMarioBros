@@ -1,0 +1,83 @@
+﻿Review author: Tian Zeng
+Date: 02/20/2019
+Sprint 3
+
+File: WorldFactory.cs
+Authored by: Guannan Zhou
+Time taken for review: 15 minutes
+
+
+private static void CreateBlock(IWorld world, string type, float xPosition, float yPosition)
+        {
+            switch (type)
+            {
+                case "BeveledBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new BeveledBlock(new Vector2(xPosition, yPosition),"BeveledBlock");
+                    break;
+                case "BrickBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new BrickBlock(new Vector2(xPosition, yPosition), "BrickBlock");
+                    break;
+                case "GroundBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new GroundBlock(new Vector2(xPosition, yPosition));
+                    break;
+                case "HiddenBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new HiddenBlock(new Vector2(xPosition, yPosition),"HiddenBlock");
+                    break;
+                case "Pipe":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new Pipe(new Vector2(xPosition, yPosition),"PipeBlock");
+                    break;
+                case "QuestionBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new QuestionBlock(new Vector2(xPosition, yPosition),"QuestionBlock");
+                    break;
+                case "UsedBlock":
+                    world.GetBlocks()[(int)xPosition / blockSidePixels][(int)yPosition / blockSidePixels] = new UsedBlock(new Vector2(xPosition, yPosition),"UsedBlock");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private static void CreateObjects(IWorld world, string obj, string type, float xPosition, float yPosition)
+        {
+            switch (obj)
+            {
+                case "Block":
+                    CreateBlock(world, type, xPosition, yPosition);
+                    break;
+                case "Player":
+                    CreatePlayer(world, type, xPosition, yPosition);
+                    break;
+                case "Item":
+                    CreateItem(world, type, xPosition, yPosition);
+                    break;
+                case "Enemy":
+                    CreateEnemy(world, type, xPosition, yPosition);
+                    break;
+                case "Scenery":
+                    CreateScenery(world, type, xPosition, yPosition);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private static void CreatePlayer(IWorld world, string type, float xPosition, float yPosition)
+        {
+            switch(type)
+            {
+                case "Mario":
+                    world.Mario.Location = new Vector2(xPosition,yPosition);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+Comments:
+This class is very easy to read overall. Due to the use of the switch statement, the main comment will be readability. 
+I think this switch statement can be broken down into if statements that might reduce the number of rows that must be read.
+If using this method is more complicated and leads to multiple if statements, then I think it would be better to break it down into switches.
+Again, there are some strings in the WorldFactory Class, which is a potential magic number. 
+I think we should avoid using string, we can choose to use typeof or other statements.

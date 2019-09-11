@@ -1,0 +1,37 @@
+﻿Author: Guannan Zhou
+Date of the code review: 02/11/2019
+Sprint Number: 2
+Name of the file being reviewed: SuperMarioBros.cs
+Author of the code: Guannan Zhou, Tian Zeng
+
+        private void AddCommands(KeyboardController keyboardController,IMario mario)
+        {
+            BrickBlock brickBlock = (BrickBlock)blockList.Find(block => block.BlockName == nameof(BrickBlock));
+            QuestionBlock questionBlock = (QuestionBlock)blockList.Find(block => block.BlockName == nameof(QuestionBlock));
+            HiddenBlock hiddenBlock = (HiddenBlock)blockList.Find(block => block.BlockName == nameof(HiddenBlock));
+            keyboardController.RegisterCommand(Keys.Z, new BrickBlockBrokenCommand(brickBlock));
+            keyboardController.RegisterCommand(Keys.X, new QuestionBlockUsedCommand(questionBlock));
+            keyboardController.RegisterCommand(Keys.C, new HiddenBlockUsedCommand(hiddenBlock));
+     
+            keyboardController.RegisterCommand(Keys.Q, new QuitCommand(this));
+            keyboardController.RegisterCommand(Keys.A, new MarioLeftCommand(mario));
+            keyboardController.RegisterCommand(Keys.D, new MarioRightCommand(mario));
+            keyboardController.RegisterCommand(Keys.W, new MarioUpCommand(mario));
+            keyboardController.RegisterCommand(Keys.S, new MarioCrouchCommand(mario));
+            keyboardController.RegisterCommand(Keys.Y, new MarioSmallCommand(mario));
+            keyboardController.RegisterCommand(Keys.U, new MarioBigCommand(mario));
+            keyboardController.RegisterCommand(Keys.I, new MarioFireCommand(mario));
+            keyboardController.RegisterCommand(Keys.O, new MarioDeadCommand(mario));
+            keyboardController.RegisterCommand(Keys.Up, new MarioUpCommand(mario));
+            keyboardController.RegisterCommand(Keys.Down, new MarioCrouchCommand(mario));
+            keyboardController.RegisterCommand(Keys.Left, new MarioLeftCommand(mario));
+            keyboardController.RegisterCommand(Keys.Right, new MarioRightCommand(mario));
+            keyboardController.RegisterCommand(Keys.R, new ResetCommand(this));
+        }
+
+Comments:
+I feel like the AddCommands is taking too many responsibilities here. Actually, blocks and marios are not created in the same approach,
+that's the main issue. We have to find the specific block from the blocklist and associate commands with it correspondingly.
+Future change:
+Change the implementation of the block class. Ideally, the AddCommands methond should only contain lines like
+controller.Register(Keys,new Command());

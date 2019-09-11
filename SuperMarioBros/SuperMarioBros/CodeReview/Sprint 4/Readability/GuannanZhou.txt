@@ -1,0 +1,46 @@
+﻿Review author: Guannan Zhou
+Date: 03/08/2019
+Sprint Number:4
+File: MarioShootState.cs
+Authored by: Tian Zeng
+Time taken for review: 15 minutes
+
+public class MarioShootState
+    {
+        private ISprite sprite;
+        public IMario mario;
+        public FireballPhysics FireballPhysics { get; set; }
+        public Fireball Fireball { get; set; }
+
+
+        public MarioShootState(bool faceRight)
+        {
+            if (faceRight)
+            {
+                sprite = PropFactory.Instance.CreateFireballRight();
+            }
+            else
+            {
+                sprite = PropFactory.Instance.CreateFireballLeft();
+            }
+            Fireball = new Fireball();
+        }
+
+        public void Shoot(bool faceRight)
+        {
+            if (faceRight)
+            {
+                Fireball.FireballPhysics.MoveRight();
+            }
+            else
+            {
+                Fireball.FireballPhysics.MoveLeft();
+            }
+
+        }
+
+Comments: I am confused about the constructor of the MarioShootState.
+It both calls Fireball() and CreateFireball() in the same function. May
+consider move the CreateFireBallLeft to the constructor of the Fireball()
+in the future. Also, the bool named "faceRight" makes me confusion. I found
+that "TurnRight" a better choice.

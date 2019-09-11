@@ -1,0 +1,19 @@
+﻿Author of the code review: Tian Zeng
+Date of the review: 04/03/2019
+Sprint number: 5
+Name of the file being reviewed: MarioEnemyCollisionHandler.cs
+Time for the code review: 20 mins
+
+Author of the code being reviewed: Guannan Zhou
+
+
+                if (side == CollisionSide.Top && enemy.Collidable)
+                {
+                    enemy.BeStomped();
+                    SoundFactory.Instance.CreateStompSound();
+                    TreeNewBee.SuperMarioBros.Instance.WorldStateManager.Score += Constant.Instance.HitGoombaReward;
+                }
+
+Comments: The name "BeStomped" should be changed, since it shouldn't be considered
+as a descriptive variable name. Also, the responsibilities of MarioGoombaCollision 
+and MarioKoopaCollision are similar. Consider combine together in the future.

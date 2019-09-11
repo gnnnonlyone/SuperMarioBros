@@ -1,0 +1,72 @@
+﻿Review author: Tian Zeng
+Date: 2/11/2019
+Sprint 2
+
+File: ResetCommand.cs
+Authored by: Yu Jiang
+Time taken for review: 25 minutes
+
+
+    class ResetCommand : ICommand
+    {
+        private SuperMarioBros game;
+        private IMario mario;
+        
+        public ResetCommand(SuperMarioBros game)
+        {
+            this.game = game;
+        }
+
+        public void Execute()
+        {
+
+            game.itemList = new List<ISprite>();
+            game.enemyList = new List<ISprite>();
+            game.blockList = new List<IBlock>();
+            game.CreateItems();
+            game.CreateEnemies();
+            game.CreateBlocks();
+            mario = new Mario(new Vector2(350, 350));
+            game.MarioInstance = mario;
+            KeyboardController keyboardController = new KeyboardController(game);
+            game.controllerList = new List<IController>
+            {
+                keyboardController
+            };
+            AddCommands(keyboardController, mario);
+          
+        }
+        private void AddCommands(KeyboardController keyboardController, IMario mario)
+        {
+            BrickBlock brickBlock = (BrickBlock)game.blockList.Find(block => block.BlockName == nameof(BrickBlock));
+            QuestionBlock questionBlock = (QuestionBlock)game.blockList.Find(block => block.BlockName == nameof(QuestionBlock));
+            HiddenBlock hiddenBlock = (HiddenBlock)game.blockList.Find(block => block.BlockName == nameof(HiddenBlock));
+            keyboardController.RegisterCommand(Keys.Z, new BrickBlockBrokenCommand(brickBlock));
+            keyboardController.RegisterCommand(Keys.X, new QuestionBlockUsedCommand(questionBlock));
+            keyboardController.RegisterCommand(Keys.C, new HiddenBlockUsedCommand(hiddenBlock));
+
+            keyboardController.RegisterCommand(Keys.Q, new QuitCommand(game));
+            keyboardController.RegisterCommand(Keys.A, new MarioLeftCommand(mario));
+            keyboardController.RegisterCommand(Keys.D, new MarioRightCommand(mario));
+            keyboardController.RegisterCommand(Keys.W, new MarioUpCommand(mario));
+            keyboardController.RegisterCommand(Keys.S, new MarioCrouchCommand(mario));
+            keyboardController.RegisterCommand(Keys.Y, new MarioSmallCommand(mario));
+            keyboardController.RegisterCommand(Keys.U, new MarioBigCommand(mario));
+            keyboardController.RegisterCommand(Keys.I, new MarioFireCommand(mario));
+            keyboardController.RegisterCommand(Keys.O, new MarioDeadCommand(mario));
+            keyboardController.RegisterCommand(Keys.Up, new MarioUpCommand(mario));
+            keyboardController.RegisterCommand(Keys.Down, new MarioCrouchCommand(mario));
+            keyboardController.RegisterCommand(Keys.Left, new MarioLeftCommand(mario));
+            keyboardController.RegisterCommand(Keys.Right, new MarioRightCommand(mario));
+            keyboardController.RegisterCommand(Keys.R, new ResetCommand(game));
+        }
+    }
+
+
+Comments:
+As it currently stands, I find that ResetCommand class has a same method with SuperMarioBros class, 
+which is AddCommands(KeyboardController keyboardController, IMario mario). If we implement it in every 
+place where we need to use AddCommands, it will inevitably lead to a decrease in maintainability. Because 
+when we want to modify it, we have to go to each class that implements it to make changes. Therefore, 
+I recommend that AddCommands be implemented in a separate class which called AddCommand or registerCommand, 
+each of class which needs to call AddCommand instead using the class of AddCommands. This can increase maintainability.

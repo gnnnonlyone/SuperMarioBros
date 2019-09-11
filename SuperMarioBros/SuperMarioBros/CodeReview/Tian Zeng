@@ -1,0 +1,82 @@
+Review author: Tian Zeng
+Date: 02/06/2019
+Sprint 2
+
+File: ItemFactory.cs
+Authored by: Renfei Wang
+Time taken for review: 25 minutes
+
+class ItemFactory
+    {
+        private Texture2D coinSpriteSheet;
+        private Texture2D rdMshrmSpriteSheet;
+        private Texture2D gnMshrmSpriteSheet;
+        private Texture2D flowerSpriteSheet;
+        private Texture2D starSpriteSheet;
+
+        private static readonly ItemFactory instance = new ItemFactory();
+        public static ItemFactory Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        
+        private ItemFactory()
+        {
+        
+        }
+
+        public void LoadAllTextures(ContentManager content)
+        {
+            coinSpriteSheet = content.Load<Texture2D>("Coin");
+            rdMshrmSpriteSheet = content.Load<Texture2D>("RedMushroom");
+            gnMshrmSpriteSheet = content.Load<Texture2D>("GreenMushroom");
+            flowerSpriteSheet = content.Load<Texture2D>("Flower");
+            starSpriteSheet = content.Load<Texture2D>("Star");
+            
+        }
+        public ISprite CreateCoinItem(Vector2 position)
+        {
+            return new CoinItem(coinSpriteSheet, 1, 4, position);
+        }
+
+        public ISprite CreateRdMshrmItem(Vector2 position)
+        {
+            return new RedMushroomItem(rdMshrmSpriteSheet, new Rectangle(0, 0, rdMshrmSpriteSheet.Width, rdMshrmSpriteSheet.Height), position);
+        }
+        
+        public ISprite CreateGnMshrmItem(Vector2 position)
+        {
+            return new GreenMushroomItem(gnMshrmSpriteSheet, new Rectangle(0, 0, gnMshrmSpriteSheet.Width, gnMshrmSpriteSheet.Height), position);
+        }
+        
+        public ISprite CreateFlowerItem(Vector2 position)
+        {
+            return new FlowerItem(flowerSpriteSheet, 1, 4, position);
+        }
+
+        public ISprite CreateStarItem(Vector2 position)
+        {
+            return new StarItem(starSpriteSheet, 1, 4, position);
+        }
+}
+
+Comments:
+The overall readability is good. But it can use auto property to have a better readability. 
+For example:
+        private static readonly ItemFactory instance = new ItemFactory();
+        public static ItemFactory Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+Could be simplifying to:       
+
+public static ItemFactory Instance { get; } = new ItemFactory();
+
+Besides this, I think the natural number in each Create method could be replaced by variable. Since these natural numbers are not easy 
+to know their meanings.

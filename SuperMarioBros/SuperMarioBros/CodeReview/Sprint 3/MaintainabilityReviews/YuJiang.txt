@@ -1,0 +1,12 @@
+﻿Author of the code review: Yu Jiang
+Date of the code review: 02/24/2019
+Sprint number: 3
+Name of the .cs file being reviewed: CollisionDetection.cs
+Author of the .cs file being reviewed: Renfei Wang
+Specific comments on code quality:
+This document works for correctly detecting collision between Mario and items, Mario and blocks, Mario and enemy.
+Specifically, there's a method that is supposed to detect Mario's collision with blocks. This time, the group has 
+spent a significant amount of time to work on its successful dection with the ground block, which contains a lot of 
+time to debug because the way it's written. I would suggest that, instead of using a lot of parameters and variables
+to store the index of the block, you could use some more specific names, makingit more easy to maintain. Also, writing
+comments is very important to help with the whole debuging process.

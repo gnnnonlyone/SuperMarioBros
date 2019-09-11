@@ -1,0 +1,31 @@
+﻿Author of the code review: Guannan Zhou
+Date of the review: 04/03/2019
+Sprint number: 5
+Name of the file being reviewed: WorldStateMachine.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang
+Commands on code quality
+
+        public void Win()
+        {
+            ScoreObj.Won = true;
+        }
+
+
+Comments: I felt confused on this method at first. Actually, the purpose
+of the method is to told the Headup Line that the player is win. The actual
+logic of Win state transaction will be handled in the main class. Would consider
+change the name of the method or remove the method.
+
+       public void Pause()
+        {
+            if (canSetPause)
+            {
+                Paused = !Paused;
+                SoundFactory.Instance.CreatePauseSound();
+            }
+            canSetPause = false;
+        }
+
+Comments: Actually, this method combines Pasue and Resume together. I would
+consier use two seperate methods.

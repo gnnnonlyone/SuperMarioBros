@@ -1,0 +1,31 @@
+﻿Author of the code review: Guannan Zhou
+Date of the review: 04/20/2019
+Sprint number: 6
+Name of the file being reviewed: SwimFishPhysics.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang
+Commands on code quality
+
+        public void ChangeDirection()
+        {
+            if (!InCollision)
+            {
+               // Velocity = new Vector2(-1 * Velocity.X, Velocity.Y);
+                Steering = true;
+            }
+        }
+
+        public void Walk()
+        {
+           // Acceleration = new Vector2(0, Acceleration.Y);
+           // Velocity = new Vector2(30, 30);
+
+        }
+
+Comments:
+I feel like this method should be renamed as "Swim" since the fish cannot walk. Furhtermore,
+the name of "ChangeDirection" is not descriptive here. 
+We might want to keep these methods since it is inherited from IEnemyPhysics. So, the problem 
+is, if it is necesseray to create a new interface called 'IFishPhysics'.
+
+ 

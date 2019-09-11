@@ -1,0 +1,11 @@
+﻿Review author: Yu Jiang
+Date: 04/07/2019
+Sprint Number:5
+File: ScoreClass.cs
+Authored by: Renfei Wang
+Time taken for review: 10 minutes
+Comments:
+
+Overall the score class is of good quality. I would say one suggestion would be the score should be consistent. In other world, if Mario gets in
+to a new world, he should not be assigned a new score. I would suggest that instead of creating a new score for Mario every time, you should set it 
+as a property and allow the score to be extracted. Every time we are updating the old score instead of creating a new one.

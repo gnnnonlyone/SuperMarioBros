@@ -1,0 +1,21 @@
+﻿Author of the code review: Guannan Zhou
+Date of the review: 04/21/2019
+Sprint number: 6
+Name of the file being reviewed: SwimMario.cs, SwimMarioPhysics.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang
+Commands on code quality:
+
+
+Overall, those two classes work well in the sprint. It's a good idea to create new classes 
+for future maintenable consideration.
+However, those two classes are not "cheap" classes in the project. "SwimMario" is nearly
+200 lines.
+
+Most parts of the SwimMario.cs is similar to the Mario.cs. The major difference
+is that we want to change the sprite of Mario. In this case, we can add a MarioState
+called swimstate to handle it. 
+If we do need a new class, abstract the common parts of the code.
+
+For SwimMarioPhysics, the problem is that we need to change the "velocity" some methods.
+Would prefer use a bool variable "isSwim" instead of creating a new physics class.

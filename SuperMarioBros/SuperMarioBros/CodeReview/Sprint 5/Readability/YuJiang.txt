@@ -1,0 +1,11 @@
+﻿Review author: Yu Jiang
+Date: 04/03/2019
+Sprint Number:5
+File: WorldStateMachine.cs
+Authored by: Guannan Zhou
+Time taken for review: 10 minutes
+Comments:
+	I notice that you are putting all the state management in this file, which is a good thing. But I also see that for the remaining life
+stuff, it's still implementing in the Mario class. I would suggest that you put all the state in this file, which should include checking if the 
+remaining life of mario is 0. If it is, it should then call the lose function that you wrote and go ahead to display the gameover message.
+Overall, other part looks good and is of good readability.

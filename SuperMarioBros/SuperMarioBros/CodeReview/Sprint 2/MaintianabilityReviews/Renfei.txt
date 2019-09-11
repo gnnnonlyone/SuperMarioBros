@@ -1,0 +1,14 @@
+﻿Author of the code review: Renfei Wang
+Date of the code review: 02/11/2019
+Sprint Number: Sprint 2
+Name of the .cs file: SuperMarioBros.cs
+Author of the .cs file being reviewed: Everyone in the team
+Specific comments on code quality:
+There are a lot of hard-coded stuff in this class such as the specific position.
+I believe these hard-coded stuff should be changed in the following sprints since
+it's not just simply displaying sprites on the screen. In that case, most of this
+class should be rewritten.
+A hypothetical change:
+We may have another class to control what to display and we added the construction of 
+the sprites inside that class, like building a world. When we need to do some change, we
+only need to change the code in the world without changing the SuperMarioBros.cs class.

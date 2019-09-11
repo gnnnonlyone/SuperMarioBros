@@ -1,0 +1,30 @@
+﻿Author: Guannan Zhou
+Date: 02/20/2019
+Sprint 3
+Name of the file being reviewed: BeveledBlock.cs
+Time of the code review: 15 mins
+Author of the file: Tian Zeng, Renfei Wang, Guannan Zhou
+
+ private BlockBeveledState stateMachine;
+        
+        public string blockName { get; set; }
+        public Vector2 SpriteLocation { get; set; }
+        
+
+        public BeveledBlock(Vector2 position, string name)
+        {
+            stateMachine = new BlockBeveledState();
+            SpriteLocation = position;
+            blockName = name;
+        }
+
+Overall, the readability of the code is pretty good. The name of the variable
+matches its function. The name of the class is clear. However, the string variable "name" 
+in the constructor may casue confusion. It's hard for user to find the right input 
+of the variable "name". Also, the variable "SpriteLocation" may need to rename in the 
+future, cause in other item classes, we have variable like "Location" and "ItemLocation".
+Actually, they are both used to illustrate the position of the game object.
+
+    
+
+

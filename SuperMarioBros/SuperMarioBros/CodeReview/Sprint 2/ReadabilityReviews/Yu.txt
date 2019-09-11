@@ -1,0 +1,13 @@
+﻿Review Author: Yu Jiang
+Date: ​02/06/2019
+Sprint2
+File Name: Game1.c
+Author of the file: RenfeiWang
+Number of minutes taken to complete the review: 30 mins
+Comment: Overall speaking, the codes are very simple structure with clear readability. 
+One possible  suggestion will be the code could be more compact with adding one additional list to the main game class.
+For example, now the method is to separately call three individual functions to create items, enemies, and blocks. 
+I am suggesting we could use one function as a wrap up to call the functions to create marios, items, enemies, and blocks, 
+which will make the code more concise and compact. 
+The other thing is, within the CreateItem class, the “Vector2” is used as parameter to pass in to the functions. 
+I feel like commenting should be a good approach to help explain what does each parameter mean.

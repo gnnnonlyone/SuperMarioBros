@@ -1,0 +1,12 @@
+﻿Author of the code review: Yu Jiang
+Date of the review: 04/21/2019
+Sprint number: 6
+Name of the file being reviewed: JellyFish.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang
+Commands on code quality:
+	Overall speaking, the class is of good quality. But I do notice one thing, the class is trying to do a lot of things at one time. I can see that 
+you are putting all the things related to jelly fish together. I would say this is increasing couplping, which makes the code hard to maintain. I would 
+suggest that you can put some of the functionality within the enemy physics class and dedicate this class to only taking care of the jelly fish's state.
+In this way, I mean, slitting up all the functionality, would allow better maintainability. I would also recommend that you go along with other enemy class 
+that we wrote, trying to keep the style all together.

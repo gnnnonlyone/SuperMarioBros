@@ -1,0 +1,12 @@
+﻿Author of the code review: Renfei Wang
+Date of the review: 04/21/2019
+sprint number: 6
+Time of the file being reviewed: 15 min
+name of the file being reviewed: EnemyPhysics.cs
+Author of the file being reviewed: Everyone
+Comments on code quality:
+For all the physics classes, we have common parts of it, such as the velocity,
+the position, and the update method looks same. I'm thinking if we could use the strategy
+pattern or template method pattern to construct our physics classes. We could separate
+the fundamental structure from the program, which will reduce lines of code and make our code
+more resilient to changes.

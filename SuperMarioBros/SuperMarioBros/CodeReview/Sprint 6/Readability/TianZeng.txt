@@ -1,0 +1,28 @@
+﻿Author of the code review: Tian Zeng
+Date of the review: 04/21/2019
+Sprint number: 6
+Name of the file being reviewed: SwimFishPhysics.cs
+Time of the code review: 20 mins
+Author of the file being reviewed: Renfei Wang
+
+        public SwimFishPhysics(Vector2 position)
+        {
+            Position = position;
+            Velocity = Constant.Constant.Instance.SwimFishSpeed;
+            // Acceleration = new Vector2(0,10);
+            Gravity = true;
+            OutOfBoundary = false;
+            InCollision = false;
+            Steering = false;
+            Walk();
+        }
+	    public void Walk()
+        {
+          
+        }
+
+Commands on code quality:
+Overall, the code is clean, the readability is good, naming is meaningful, I can easily 
+understand the purpose of the most of codes. However, this segment of code would be a little 
+confused. The constructor of SwimFishPhysics will can Walk(), but Walk() has no any implementation, 
+so I'm wondering if this method is necessary, or it need to updata in the future.
